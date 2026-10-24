@@ -4,12 +4,12 @@ Document ID: **GCP-005**. Date: **2026-10-24**.
 
 [Expanded counterpart](../docs/005-poc-plan.md). [Repository overview](../README.md).
 
-**Saved proposal; implementation not started.** Authorization covers repository creation and saving the plan before implementation, not phase execution, new public APIs, publication or deployment.
+**Phase 0 in progress; implementation not started.** Owner authorized phase 0 and selected a dedicated Kajenn site in Docker on the Mac over LAN HTTPS. Hetzner is a future destination, not deployment authorization. [GCP-010](010-phase-0-preparation.md) records evidence, proposals and open decisions; phase 1 and new APIs remain unapproved.
 
 <a id="gcp-005-005"></a>
 ## 005 · Purpose and owner direction
 
-Owner direction, originating conversation of 2026-10-24: minimize store updates, serve mutable application code from the site, share container code across separately identified apps, and explore camera, Face ID, notifications and location through Gramlot bindings. Owner explicitly chose gramlot-capacitor and requested (English translation): “OK, create the gramlot-capacitor repository and save the PoC plan before starting implementation.” Technical choices below remain proposals.
+Owner direction, originating conversation of 2026-10-24: minimize store updates, serve mutable application code from the site, share container code across separately identified apps, and explore camera, Face ID, notifications and location through Gramlot bindings. Owner explicitly chose gramlot-capacitor and requested (English translation): “OK, create the gramlot-capacitor repository and save the PoC plan before starting implementation.” Subsequent owner confirmations (English translations): “OK, let us start phase 0 of the plan in gramlot-capacitor”; “Kajenn with a dedicated test site”; “On the Mac, on the local network”; “I would put it in Docker, still using Kajenn. Later we can put it on Hetzner with my servers.” The LAN choice answered an HTTPS/device-trusted certificate proposal. Remaining technical choices below are proposals.
 
 <a id="gcp-005-010"></a>
 ## 010 · Proposed architecture and responsibilities
@@ -18,7 +18,7 @@ Installed: Capacitor, selected plugins, minimal native bridge/connection handlin
 
 Proposed primary path: HTTPS site in the main WebView through server.url. Prove bridge access and loading under actual CSP; bundled files do not automatically become remote-page imports, and a local page's JavaScript context does not survive navigation by assumption. Capacitor documents server.url for development, not production.
 
-Dependency direction: gramlot-capacitor → Gramlot/integrations. No core Capacitor dependency. Core owns general runtime contracts; host/application owns HTTP, identity and push sending. Confirm host and any connected edits separately. Use Python-first Source/Data/bindings/controllers/resolvers/components; no parallel UI, manual DOM wiring, ad hoc page requests or workarounds for missing library capabilities.
+Dependency direction: gramlot-capacitor → Gramlot/integrations. No core Capacitor dependency. Core owns general runtime contracts; host/application owns HTTP, identity and push sending. Kajenn in Docker on the Mac is confirmed; connected edits, TLS details and bridge contract remain separate decisions. Use Python-first Source/Data/bindings/controllers/resolvers/components; no parallel UI, manual DOM wiring, ad hoc page requests or workarounds for missing library capabilities.
 
 <a id="gcp-005-015"></a>
 ## 015 · Scope and prerequisites
@@ -32,7 +32,7 @@ Resolve devices/OS (physical Face ID device; physical iPad coverage or explicit 
 <a id="gcp-005-020"></a>
 ## 020 · Phase 0 — Contract and preparation
 
-Inventory/select plugins and define inputs/results, permission denial, cancellation, unavailability and failure. Distinguish installed capability, device availability and permission. Official-plugin candidates: Camera, Geolocation, Push/Local Notifications, App, Network and Haptics; third-party Biometric Auth remains a candidate.
+Inventory/select plugins and define inputs/results, permission denial, cancellation, unavailability and failure. Distinguish installed capability, device availability and permission. Official-plugin candidates: Camera, Geolocation, Push/Local Notifications, App, Network and Haptics; the owner selected @aparajita/capacitor-biometric-auth for local biometrics; remaining baseline/contract decisions are in GCP-010.
 
 Define versioned bridge contract, unsupported-capability behavior, Data writers, subscription ownership and cleanup. Commands explicitly start native actions; state/results update Data; events invoke ordinary logic. No prompts from reactive recomputation or late writes to disposed pages. Native capability reporting is separate from server capabilities. Confirm new names under GC-225, one decision at a time; no inferred fallback.
 
@@ -100,11 +100,11 @@ Automate contracts, errors, disposal and ordering. Browser/simulator checks supp
 <a id="gcp-005-060"></a>
 ## 060 · Deliverables, progress and next action
 
-Completed: local repository skeleton, expanded and concise plan. No implementation, installation, signing, device execution, public remote, release or deployment. Phases 0–6: not started.
+Completed: repository skeleton, paired plan, phase-0 plugin/manifest inspection, prerequisite checks and paired GCP-010 proposal. No implementation, installation, signing, device app execution, public remote, release or deployment. Phase 0 in progress; phases 1–6 not started.
 
 Future: reproducible container, site configurations, Python demo pages, reusable integration, plugin inventory, contracts, focused checks/hardware report, unresolved gaps and production assessment.
 
-After an implementation request, confirm bounded execution beginning with host/site and phase-1 probe. Repository placement is already confirmed. Request unresolved credentials/ownership only when needed; continue unaffected authorized work.
+Repository, Kajenn, Docker and Mac/LAN HTTPS are confirmed. Next settle plugin selection, bridge contract and remaining prerequisites in GCP-010, one decision at a time. Credentials are requested when needed; phase 1 has not started.
 
 <a id="gcp-005-065"></a>
 ## 065 · Evidence and references

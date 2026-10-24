@@ -4,7 +4,7 @@ Document ID: **GCP-005**. Date: **2026-10-24**.
 
 [Concise counterpart](../docs_llm/005-poc-plan.md). [Repository overview](../README.md).
 
-**Status: saved proposal; implementation not started.** Repository creation and plan persistence are authorized. Phase execution, public API names, unresolved architecture choices and product adoption are not authorized by this document.
+**Status: phase 0 in progress; implementation not started.** The owner authorized phase 0 on 2026-10-24. Confirmed hosting: a dedicated Kajenn site in Docker on the Mac, reachable over the LAN using HTTPS; Hetzner is a future destination. See [GCP-010](010-phase-0-preparation.md) for evidence, proposals and remaining decisions. Phase 1, public API names and unresolved contracts are not approved by this status.
 
 <a id="gcp-005-005"></a>
 ## 005 · Purpose and owner direction
@@ -17,7 +17,11 @@ Owner direction in the originating conversation, 2026-10-24 (English translation
 - Use the same container implementation for separate applications with different icons and site URLs.
 - Explore camera, Face ID, notifications, geolocation and their integration with Gramlot bindings.
 - Repository placement: “I would see it as a gramlot-capacitor repository.”
-- Current authorization: “OK, create the gramlot-capacitor repository and save the PoC plan before starting implementation.”
+- Initial authorization: “OK, create the gramlot-capacitor repository and save the PoC plan before starting implementation.”
+- Phase 0 authorization: “OK, let us start phase 0 of the plan in gramlot-capacitor.”
+- Hosting confirmations: “Kajenn with a dedicated test site”; “On the Mac, on the local network”; then “I would put it in Docker, still using Kajenn. Later we can put it on Hetzner with my servers.”
+
+The LAN confirmation answered a proposal explicitly including HTTPS and a device-trusted certificate. The Docker decision changes server packaging, not the agreed host or remote-page model. No deployment to Hetzner has been requested.
 
 These statements establish the objective, repository and current documentation scope. They do not approve every proposed technical choice below. Store publication and a production architecture are outside the current authorization.
 
@@ -37,7 +41,7 @@ Proposed primary path: load the HTTPS site in Capacitor's main WebView using ser
 
 The packaging and loading mechanism for the minimal bridge remains to be proved. Files bundled with the app are not automatically available as imports to a remote page. Do not assume loading the website preserves a JavaScript context previously created in a local page.
 
-Dependencies point from gramlot-capacitor toward Gramlot and its integrations. Core receives no Capacitor dependency. General runtime contracts remain in core; HTTP hosting, identity and server push delivery remain in the appropriate server/application layer. The exact host for the PoC and any connected-repository changes require a bounded decision.
+Dependencies point from gramlot-capacitor toward Gramlot and its integrations. Core receives no Capacitor dependency. General runtime contracts remain in core; HTTP hosting, identity and server push delivery remain in the appropriate server/application layer. The owner selected Kajenn in Docker on the local Mac. Connected-repository changes still require a bounded decision; TLS implementation, plugin selection and bridge contract remain open.
 
 Keep demonstration pages Python-first and based on Source, Data Bags, bindings, controllers, resolvers and shared components. No parallel UI, DOM/event machinery or application-local transport workaround. Prefer existing extension/resource mechanisms; report missing lifecycle or extension points before proposing a bounded owning-project change.
 
@@ -64,7 +68,7 @@ Observed local baseline on 2026-10-24: Apple Silicon, Xcode 26.1.1 and Node 23.1
 <a id="gcp-005-020"></a>
 ## 020 · Phase 0 — Contract and preparation
 
-Prepare the plugin inventory, select the host and devices, and settle the minimal bridge contract before implementation. Ask one unresolved owner decision at a time. Camera, Geolocation, Push Notifications, Local Notifications, App and Network are official-plugin candidates; Haptics is the proposed initial probe. Biometric Auth is a third-party candidate, not a selection already made.
+Prepare the plugin inventory, select the host and devices, and settle the minimal bridge contract before implementation. Ask one unresolved owner decision at a time. Camera, Geolocation, Push Notifications, Local Notifications, App and Network are official-plugin candidates; Haptics is the proposed initial probe. The owner selected @aparajita/capacitor-biometric-auth for local biometrics on 2026-10-24; the remaining baseline and contract are tracked in GCP-010.
 
 Specify each operation's input, result, cancellation, denial, unavailable state and failure. Distinguish installed capability, OS/device availability and granted permission. State who writes Data, owns listeners and releases resources. Keep native capability reporting separate from Gramlot's server capabilities.
 
@@ -160,11 +164,11 @@ Record actual devices/OS, plugin versions, tested source revisions, steps, obser
 <a id="gcp-005-060"></a>
 ## 060 · Deliverables, progress and next action
 
-Current completed work: local repository skeleton, this plan and its concise mirror. No runtime implementation, dependency installation, signing setup, device execution, public remote, release or deployment.
+Current completed work: local repository skeleton, paired plan, phase-0 plugin/manifest inspection, local prerequisite checks and the paired GCP-010 contract proposal. No runtime implementation, dependency installation, signing setup, device execution, public remote, release or deployment.
 
 Future deliverables: reproducible container setup; site configuration format; Python Gramlot demonstration pages; reusable native integration; plugin inventory; contract documentation; focused checks and hardware verification report; explicit unresolved gaps and production-readiness assessment.
 
-Phase status: 0 through 6 are **not started**. Next action after the owner requests implementation: confirm the bounded execution contract, starting with the host/site and phase-1 bridge probe. Repository placement is already confirmed and must not be asked again. Credentials and unresolved ownership choices are requested only when needed; unaffected work can continue.
+Phase status: **0 in progress**, phases 1–6 **not started**. Repository placement, dedicated Kajenn host, Docker and Mac/LAN HTTPS are confirmed; do not ask again. Next decisions concern the plugin set, bounded bridge contract and remaining prerequisites recorded in GCP-010. Request credentials only when needed; no phase-1 or deployment work starts from this note.
 
 <a id="gcp-005-065"></a>
 ## 065 · Evidence and references

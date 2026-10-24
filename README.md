@@ -2,10 +2,11 @@
 
 A planned Capacitor client for remote Gramlot sites, with native device capabilities exposed to Gramlot pages.
 
-**Status: planning only, 2026-10-24.** The repository and PoC plan are created at the owner's request. There is no application, native project, installed dependency, or verified mobile integration yet. Implementation has not started.
+**Status: phase 0 in progress, 2026-10-24.** The owner authorized contract/preparation work and confirmed a dedicated Kajenn test site in Docker on the Mac, reachable over the local network using HTTPS. Hetzner is a future target, not a deployment instruction. No application, container image or native project has been implemented.
 
 - [PoC plan](docs/005-poc-plan.md)
 - [Concise plan](docs_llm/005-poc-plan.md)
+- [Phase 0: decisions, plugin inventory and contract proposal](docs/010-phase-0-preparation.md)
 - [Working instructions](AGENTS.md)
 
 The intended model is one shared container codebase, with a separate application identity, icon and site URL for each site. Gramlot runtime, pages, browser application logic and styles are served by the site. Native plugins and the minimal native integration are shipped in the app. Remote code updates cannot install new native plugins.

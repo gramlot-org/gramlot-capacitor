@@ -2,7 +2,7 @@
 
 ## Current authorization
 
-The owner requested creation of this repository and saving the PoC plan **before implementation**. Read README.md and both plan views. Do not start implementation, scaffold Capacitor, install packages, configure credentials, publish, or deploy from this planning instruction alone.
+The initial instruction authorized repository creation and saving the plan before implementation. On 2026-10-24 the owner explicitly started **phase 0** and selected a dedicated Kajenn site in Docker on the Mac, reachable over the local network using HTTPS. Read README.md, both plan views and GCP-010. Phase 0 authorizes investigation, prerequisite checks and contract preparation; it does not start phase 1. Do not scaffold Capacitor, build/start containers, install dependencies, change trust/signing settings or deploy from this phase-0 instruction alone. Hetzner is a future target, not current deployment authorization.
 
 The plan is a proposal, not an approved API contract. Record concrete owner confirmations and distinguish proposed, implemented, verified and accepted work. Ask one unresolved design question at a time; do not re-ask confirmed decisions.
 
