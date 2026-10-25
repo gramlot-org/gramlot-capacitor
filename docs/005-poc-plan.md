@@ -4,7 +4,7 @@ Document ID: **GCP-005**. Date: **2026-10-24**.
 
 [Concise counterpart](../docs_llm/005-poc-plan.md). [Repository overview](../README.md).
 
-**Status: phase 0 in progress; implementation not started.** The owner authorized phase 0 on 2026-10-24. Confirmed hosting: a dedicated Kajenn site in Docker on the Mac, reachable over the LAN using HTTPS; Hetzner is a future destination. See [GCP-010](010-phase-0-preparation.md) for evidence, proposals and remaining decisions. Phase 1, public API names and unresolved contracts are not approved by this status.
+**Current status:** gallery, camera, Face ID and local notification display/tap are owner-accepted. Real APNs registration, reactive server association and foreground receipt are verified on iPhone. Background banner and tap-to-Data are owner-accepted after disabling Focus; see [GCP-045](045-server-push-poc.md). The following phases remain the overall acceptance plan; later bounded increments have started without satisfying every earlier exit gate.
 
 <a id="gcp-005-005"></a>
 ## 005 · Purpose and owner direction
@@ -28,6 +28,8 @@ These statements establish the objective, repository and current documentation s
 <a id="gcp-005-010"></a>
 ## 010 · Proposed architecture and responsibilities
 
+**Owner update, 2026-10-24:** the native integration follows the provider-independent `gramlot.dvc` / `DeviceHandler` contract and reserved Data subtree `gramlot.device`. Reads use resolvers; Data and ordinary controllers own triggers, requests and queues. Capacitor is the first provider. See [GCP-020](020-device-integration.md); earlier provider-specific API sketches are superseded as recorded there.
+
 | Installed application | Remote site |
 | --- | --- |
 | Capacitor runtime and selected native plugins | Gramlot browser runtime and its web dependencies |
@@ -41,7 +43,7 @@ Proposed primary path: load the HTTPS site in Capacitor's main WebView using ser
 
 The packaging and loading mechanism for the minimal bridge remains to be proved. Files bundled with the app are not automatically available as imports to a remote page. Do not assume loading the website preserves a JavaScript context previously created in a local page.
 
-Dependencies point from gramlot-capacitor toward Gramlot and its integrations. Core receives no Capacitor dependency. General runtime contracts remain in core; HTTP hosting, identity and server push delivery remain in the appropriate server/application layer. The owner selected Kajenn in Docker on the local Mac. Connected-repository changes still require a bounded decision; TLS implementation, plugin selection and bridge contract remain open.
+Dependencies point from gramlot-capacitor toward Gramlot and its integrations. Core receives no Capacitor dependency. General runtime contracts remain in core; HTTP hosting, identity and server push delivery remain in the appropriate server/application layer. The owner selected Kajenn in Docker on the local Mac. The owner authorized the reusable kajenn/Caddy setup in kajenn/deploy/local-https; iPhone Safari trust and plugin selection are confirmed; native WebView trust and bridge loading/naming remain open.
 
 Keep demonstration pages Python-first and based on Source, Data Bags, bindings, controllers, resolvers and shared components. No parallel UI, DOM/event machinery or application-local transport workaround. Prefer existing extension/resource mechanisms; report missing lifecycle or extension points before proposing a bounded owning-project change.
 
@@ -50,7 +52,7 @@ Keep demonstration pages Python-first and based on Source, Data Bags, bindings, 
 
 Required demonstrations: remote Gramlot rendering and RPC; native capability discovery; camera with bound preview; foreground location; real biometric prompt; local notification; real remote push with navigation; web-only update with unchanged installed binary.
 
-Supporting scope: network and app lifecycle, permission/error states, listener cleanup, trusted navigation and app/bridge capability reporting. A simple haptic operation is the proposed first bridge probe.
+Supporting scope: network and app lifecycle, permission/error states, listener cleanup, trusted navigation and app/bridge capability reporting. App.getInfo is the owner-selected first bridge probe; Haptics is supplementary.
 
 Deferred: Android qualification, offline business-data synchronization, continuous background location, silent push handling, exhaustive plugin coverage, store submission and production guarantees. Biometric server sign-in is a distinct extension; local biometric confirmation alone must never be reported as server authentication.
 
@@ -68,7 +70,7 @@ Observed local baseline on 2026-10-24: Apple Silicon, Xcode 26.1.1 and Node 23.1
 <a id="gcp-005-020"></a>
 ## 020 · Phase 0 — Contract and preparation
 
-Prepare the plugin inventory, select the host and devices, and settle the minimal bridge contract before implementation. Ask one unresolved owner decision at a time. Camera, Geolocation, Push Notifications, Local Notifications, App and Network are official-plugin candidates; Haptics is the proposed initial probe. The owner selected @aparajita/capacitor-biometric-auth for local biometrics on 2026-10-24; the remaining baseline and contract are tracked in GCP-010.
+Prepare the plugin inventory, select the host and devices, and settle the minimal bridge contract before implementation. Ask one unresolved owner decision at a time. The owner selected the seven official plugins Camera, Geolocation, Push Notifications, Local Notifications, App, Network and Haptics; App.getInfo is the first probe. The owner selected @aparajita/capacitor-biometric-auth for local biometrics on 2026-10-24; the minimal behavioral contract is also owner-confirmed; remaining concrete naming/loading details and setup prerequisites are tracked in GCP-010.
 
 Specify each operation's input, result, cancellation, denial, unavailable state and failure. Distinguish installed capability, OS/device availability and granted permission. State who writes Data, owns listeners and releases resources. Keep native capability reporting separate from Gramlot's server capabilities.
 
@@ -162,13 +164,25 @@ Use focused automated tests for contract/error handling, subscriptions, disposal
 Record actual devices/OS, plugin versions, tested source revisions, steps, observed results and limitations. Tested first-party revisions are evidence, not dependency pins. Label each item proposed, implemented, verified or owner-accepted. A missing required hardware or push result leaves the PoC partially verified.
 
 <a id="gcp-005-060"></a>
-## 060 · Deliverables, progress and next action
+## 060 · Current execution status
 
-Current completed work: local repository skeleton, paired plan, phase-0 plugin/manifest inspection, local prerequisite checks and the paired GCP-010 contract proposal. No runtime implementation, dependency installation, signing setup, device execution, public remote, release or deployment.
+Owner-directed bounded increments have progressed through DeviceHandler/resolvers, camera, Face ID, local notifications and real server push. GCP-025 through GCP-045 record implemented, verified and accepted evidence. Camera, biometrics and local notification display/tap are accepted. APNs registration and foreground receipt work; background presentation/tap are owner-accepted after disabling Focus. Phase 5 is partial: cold-start opening and tap-to-Data are owner-accepted; general authorized navigation/account lifecycle remains outside this bounded fixture. Navigation/frame isolation, remaining lifecycle cases, second-site configuration and other full-plan gates are still open. No official-site deployment, store submission or release is claimed.
 
-Future deliverables: reproducible container setup; site configuration format; Python Gramlot demonstration pages; reusable native integration; plugin inventory; contract documentation; focused checks and hardware verification report; explicit unresolved gaps and production-readiness assessment.
+Gallery shortcut extension: GCP-050 is implemented and installed after explicit owner confirmation of Data-driven navigation. The owner confirmed successful invocation and gallery opening from Shortcuts. Automatic tile discovery, cold start and Siri voice use remain separately unverified.
 
-Phase status: **0 in progress**, phases 1–6 **not started**. Repository placement, dedicated Kajenn host, Docker and Mac/LAN HTTPS are confirmed; do not ask again. Next decisions concern the plugin set, bounded bridge contract and remaining prerequisites recorded in GCP-010. Request credentials only when needed; no phase-1 or deployment work starts from this note.
+Additional feature increments: GCP-050 shortcut invocation/gallery opening is owner-accepted. GCP-055 QR scanning is implemented and owner-verified on iPhone; Owner also confirms Code 128 and cancellation. Network/app lifecycle/haptics are implemented, automatically/browser verified and installed (GCP-060). Haptic impact is owner-accepted after enabling iOS System Haptics; a distinct Data-driven 600 ms vibration is also implemented, tested and owner-accepted. Network/lifecycle hardware checks remain pending. GCP-065 audio recording uses a selected MIT recorder, is implemented/tested/installed, and recording/playback, explicit cancellation and Home/return cancellation are owner-accepted; permission-denial and external audio-interruption hardware cases remain separately unverified. GCP-070 sharing of the recorded audio is implemented with the official MIT Share plugin, tested and owner-accepted on iPhone; native cancellation and delivery/export details are separately unverified. Keyboard, external-link handling, broader sharing and speech/voice services remain future extensions.
+
+Slider extension (GCP-075): existing horizontalSlider live Data binding and change-triggered publication are implemented in the Python fixture; runtime diagnostic passes. Live Python/browser verification passes for keyboard and pointer changes with final value/counter updates. Physical iPhone dragging remains pending. No new native dependency or core API.
+
+Pinch extension (GCP-080): owner approves pinchPane in core and the photo/rectangle fixture sharing the slider Data value and completion publication. Implementation, 3,915 core tests, focused Python checks and browser shared-transform/publication checks pass. After the initial device-lock blocker, the owner confirms the pinch trial works (“si va bene ma si puo anche ruotare?”). The bounded shared-scale interaction is accepted; rotation is not implemented. No release is claimed.
+
+Transform extension (GCP-085): owner approves x/y/rotate/zoom and transformPane. Implementation, 22 focused and 3,921 full JS tests, five Python checks and browser rotation/drag verification pass. After successful iPhone relaunch the owner responds “perfetto”, accepting the bounded transform result. This does not separately verify every gesture/cancellation or photo-specific hardware case.
+
+Clipboard extension (GCP-090): explicit plain-text copy/paste through Data is implemented with the official MIT plugin. All 3,926 core tests, focused/provider checks, browser unavailable behavior, native build/signature/plugin inclusion and iPhone installation pass. After the device-lock checkpoint, the owner explicitly confirms successful Copy/Paste on iPhone with the correct Data result; this bounded text round trip is accepted. External-app exchange and permission-denial cases remain separately unverified. No Excel-format or rich-media clipboard support is claimed.
+
+Photo-library extension (GCP-095): single-photo choice through camera?choose is implemented using the installed Camera plugin and the existing result/preview. All 3,931 core tests, 73 focused and 63 provider/page tests pass; browser unavailable behavior and local refresh pass. No new native dependency or reinstall. iPhone photo-selection/cancellation acceptance remains pending.
+
+Universal Link and Mobile application increments: GCP-100/GCP-105 record a signed, installed bundled entry, Data-driven link routing, public Apple association verified through the CDN, and 14 separate Mac-hosted device pages. The native-only gallery branch is deployed as a temporary reviewed asset override. Browser/test verification passes; The owner confirms external QR-to-app example opening and the separate native App information page. Preferences are a documented ownership proposal only; Android is deferred by the owner.
 
 <a id="gcp-005-065"></a>
 ## 065 · Evidence and references
@@ -187,3 +201,57 @@ Primary external references (checked 2026-10-24):
 - [Push Notifications](https://capacitorjs.com/docs/apis/push-notifications): no iOS silent-push support in this plugin.
 - [Local Notifications](https://capacitorjs.com/docs/apis/local-notifications), [App lifecycle](https://capacitorjs.com/docs/apis/app), [Security](https://capacitorjs.com/docs/guides/security).
 - [Biometric Auth candidate](https://github.com/aparajita/capacitor-biometric-auth): third-party plugin; verify current compatibility and license before selection.
+
+
+2026-10-25 — Independent mobile module and Mela: implemented in examples/mobile_application with relative routes, one catalogue and host-injected push backend. GCP-110 is the integration contract for the other gallery chat; this increment does not edit or publish the gallery. GCP-115 describes the refined shared Mela theme and local Source-owned iframe preview. Module/core/provider checks pass; physical iPhone appearance and receiver integration remain acceptance work.
+
+
+<a id="gcp-005-070"></a>
+## 070 · Internal TestFlight preparation — 2026-10-25
+
+Owner authorizes preparation only, public gallery without Mac dependence, internal testers and the existing Gramlot asset icon. GCP-120 records an isolated public-only beta project, opaque 1024px icon, production APNs entitlement and successful unsigned Release archive. No signing, export, upload, invitations or public deployment. Public mobile module integration remains absent (catalogue 404; served gallery still references LAN); signing, compliance answers and production push backend remain prerequisites for the relevant distribution/tests. Internal TestFlight does not require Beta App Review; external testing requires a separately eligible build and review information.
+
+Signing/Connect follow-up, 2026-10-25: explicit owner request authorizes preparation without upload. Local Apple Distribution export settings and a draft app/internal-group record are prepared; no distribution identity is present locally. Account changes remain blocked by automatic approval review pending specific certificate/profile approval; browser authentication must be completed in the accessible Codex tab. GCP-120 §035 records the evidence. No remote changes or signed artifact are claimed.
+
+Signing/Connect result, 2026-10-25: owner explicitly authorizes certificate/profile creation, names the app Gramlot and retains the official icon. App Store Connect app 6826770549 and empty Team interno group are created; automatic distribution is disabled. The local IPA passes Apple Distribution, production APNs and associated-domain entitlement verification. No upload or invitations. GCP-120 §040 supersedes the earlier authorization/login blockers; public integration and compliance prerequisites remain.
+
+Compliance follow-up, 2026-10-25: owner confirms exempt-encryption response and app-private UserDefaults/local file timestamp privacy reasons. The rebuilt Distribution IPA verifies the Boolean and manifest alongside production push and Universal Links. No upload. GCP-120 §045 supersedes the pending technical encryption declaration; public service privacy and future dependencies are not covered by that confirmation.
+
+
+<a id="gcp-005-motion"></a>
+## Native orientation and motion — 2026-10-25
+
+Owner confirms the Data paths and enabled/watching contract. GCP-125 records the system-native implementation, iframe cleanup and tests; iPhone acceptance remains pending. The new motion page is local-only pending separate public deployment. SQLite without SQLCipher with Asqueel is still requested and pending. No TestFlight upload.
+
+
+<a id="gcp-005-english-ui"></a>
+## English-only interface — 2026-10-25
+
+Owner requires English for every application page. The mobile module, catalogue, embedded app entry and authored native messages have been translated; GCP-110 §055 is the integration requirement. Public gallery propagation and regenerating the previously signed beta are separate from this local update. The earlier beta artifact is not the current motion/English source snapshot.
+
+
+English-copy verification: all 71 provider/entry tests and three Python module tests pass; the signed Debug build succeeds and is installed on iPhone. The final automatic launch was blocked only because the phone was locked; open Gramlot manually. The local motion page renders English headings, help, switches and states. Public propagation and regeneration of the older signed beta remain outstanding. Sensor movement/background acceptance is still pending.
+
+
+Motion correction, 2026-10-25: iPhone testing exposed native startup reporting watching=false without a later activation event. GCP-125 §025 records the corrected native state-before-sample delivery, binding test, successful build/install/launch and pending user retest.
+
+
+Owner hardware confirmation, 2026-10-25: “Sì, ora vedo i valori dei due sensori” confirms displayed gyroscope and accelerometer values after the delayed-activation fix. This does not establish background/resume or orientation acceptance. The owner also observes changing values at rest and suggests a threshold; a configurable Data update threshold is under discussion, not implemented or approved.
+
+
+<a id="gcp-005-sqlite"></a>
+## Native SQLite and local beta preparation — 2026-10-25
+
+Owner-approved native SQLite/Asqueel connection and Data lifecycle implemented; GCP-130 records the scalar PoC scope, actual native engine persistence tests, core/provider tests and iOS build. iPhone installation/acceptance is pending a device reconnection. Public database page currently returns 404; matching gallery deployment is separate (GCP-110 §060). A fresh internal-only beta is being prepared with the public gallery, new plugins and English UI; no upload is authorized or performed. Bluetooth/PacketLogger remains postponed.
+
+
+SQLite closure, 2026-10-25: owner accepts creation/save/full-app-restart/read on iPhone (“Sì, la nota è ancora presente”). The current beta is locally distribution-signed and verified with system SQLite, Asqueel integration and public-only navigation; no upload. This supersedes the preceding installation and signing pending status. Public SQLite page deployment and a public-only device trial remain separate (GCP-130 §025, GCP-120 §050, GCP-110 §060).
+
+
+First internal TestFlight delivery, 2026-10-25: owner explicitly authorizes upload and the two concrete tester invitations. Gramlot 1.0 (2) uploaded successfully, processed by Apple, assigned to Team interno and shown as Testing. Two internal testers show Invited. This supersedes the earlier no-upload status for this build only. Installation acceptance and matching public module deployment remain separate. GCP-120 §055 records authorization and verification.
+
+
+<a id="gcp-005-github"></a>
+## Public source repository — 2026-10-25
+
+Owner requests “su github mettilo in gramlot-org” and explicitly chooses “Pubblico, come gli altri repository Gramlot”. Publish this repository as gramlot-org/gramlot-capacitor. The reviewed current PoC snapshot is the consolidated main reference, with develop retained for further work. This authorizes source publication only; no additional package release, app deployment or TestFlight build is implied. Private .local artifacts, signing/provisioning/APNs material, device identifiers, user media and generated npm lockfiles are excluded. Core source remains owned and published separately by Gramlot; consumers need the matching core device/frame contracts described in GCP-110 and GCP-130.

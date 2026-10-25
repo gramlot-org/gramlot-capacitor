@@ -1,0 +1,11 @@
+{
+  "distribution": "testflight-internal",
+  "appId": "dev.gramlot.capacitor.poc",
+  "appName": "Gramlot",
+  "version": "1.0",
+  "build": "2",
+  "galleryUrl": "https://gallery-py.gramlot.dev/",
+  "exampleUrl": "https://gallery-py.gramlot.dev/pages/01-inputs/04-colorpicker",
+  "deviceProbeUrl": null,
+  "apnsEnvironment": "production"
+}

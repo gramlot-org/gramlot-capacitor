@@ -1,0 +1,3 @@
+gramlot-py-server[kajenn,gallery]
+httpx[http2]
+PyJWT[crypto]

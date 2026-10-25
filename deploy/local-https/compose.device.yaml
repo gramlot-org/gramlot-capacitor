@@ -1,0 +1,14 @@
+# Explicit local development runtime, built from the connected Gramlot checkout.
+services:
+  kajenn:
+    environment:
+      PYTHONPATH: /site:/examples
+    ports:
+      - '127.0.0.1:8085:8080'
+    volumes:
+      - ${GRAMLOT_CAPACITOR_DIR}/examples:/examples:ro
+      - ${GRAMLOT_CAPACITOR_DIR}/.local/themes:/usr/local/lib/python3.12/site-packages/gramlot/resources/themes:ro
+      - ${GRAMLOT_CAPACITOR_DIR}/.local/runtime/gramlot.min.js:/usr/local/lib/python3.12/site-packages/gramlot/resources/gramlot.min.js:ro
+      - ${GRAMLOT_CAPACITOR_DIR}/.local/apns:/run/gramlot-apns:ro
+      - ${GRAMLOT_CAPACITOR_DIR}/.local/collections/layout:/usr/local/lib/python3.12/site-packages/gramlot/collections/layout:ro
+      - ${GRAMLOT_CAPACITOR_DIR}/.local/collections/layout.json:/usr/local/lib/python3.12/site-packages/gramlot/collections/layout.json:ro

@@ -1,0 +1,8 @@
+services:
+  kajenn:
+    image: gramlot-capacitor-kajenn:local
+    build:
+      context: ${GRAMLOT_CAPACITOR_DIR}/deploy/local-https
+      dockerfile: Dockerfile
+    volumes:
+      - ${GRAMLOT_CAPACITOR_DIR}/site:/site:ro

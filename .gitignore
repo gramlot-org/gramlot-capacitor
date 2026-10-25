@@ -6,3 +6,30 @@ node_modules/
 *.p8
 *.p12
 *.mobileprovision
+
+# Local native build products and user-specific Xcode state
+ios/**/xcuserdata/
+ios/**/DerivedData/
+
+# Private device/build state; never commit provisioning or signing artifacts.
+.local/
+
+# Generated browser provider bundle
+examples/mobile_application/assets/device-provider.js
+
+# Generated embedded app assets; sources are in shell/.
+www/gramlot.js
+www/device-provider.js
+www/source.js
+www/entry.js
+www/logic.js
+www/entry.css
+
+# Python example build/test cache
+__pycache__/
+*.pyc
+
+www/target.js
+
+# First-party dependencies follow upstream; do not publish an npm lockfile.
+package-lock.json

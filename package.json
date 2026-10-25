@@ -1,0 +1,45 @@
+{
+  "name": "gramlot-capacitor",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Gramlot gallery Capacitor proof of concept",
+  "engines": {
+    "node": ">=24 <25"
+  },
+  "scripts": {
+    "ios:add": "cap add ios",
+    "ios:sync": "npm run shell:build && cap sync ios",
+    "ios:open": "cap open ios",
+    "ios:check": "sh scripts/check-ios-toolchain.sh",
+    "device:build": "node scripts/build-device.mjs",
+    "test": "node --experimental-test-module-mocks --test tests/*.test.mjs",
+    "device:start": "sh scripts/start-device.sh",
+    "shell:build": "sh scripts/build-shell.sh",
+    "beta:prepare": "npm run device:build && python3 scripts/prepare-testflight.py",
+    "beta:check": "python3 scripts/check-testflight.py",
+    "beta:archive": "python3 scripts/archive-testflight.py"
+  },
+  "dependencies": {
+    "@aparajita/capacitor-biometric-auth": "^10.0.0",
+    "@asqueel/asqueel-js": "*",
+    "@capacitor/app": "^8.1.2",
+    "@capacitor/barcode-scanner": "^3.1.3",
+    "@capacitor/camera": "^8.2.6",
+    "@capacitor/clipboard": "^8.0.1",
+    "@capacitor/core": "^8.5.3",
+    "@capacitor/filesystem": "^8.1.5",
+    "@capacitor/geolocation": "^8.2.4",
+    "@capacitor/haptics": "^8.0.2",
+    "@capacitor/ios": "^8.5.3",
+    "@capacitor/local-notifications": "^8.3.1",
+    "@capacitor/network": "^8.0.1",
+    "@capacitor/push-notifications": "^8.1.3",
+    "@capacitor/share": "^8.0.3",
+    "@independo/capacitor-voice-recorder": "^8.3.12"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^8.5.3",
+    "esbuild": "^0.28.2"
+  },
+  "type": "module"
+}

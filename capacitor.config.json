@@ -1,0 +1,29 @@
+{
+  "appId": "dev.gramlot.capacitor.poc",
+  "appName": "Gramlot PoC",
+  "webDir": "www",
+  "server": {
+    "cleartext": false,
+    "allowNavigation": [
+      "gallery-py.gramlot.dev",
+      "192.168.5.115"
+    ],
+    "appStartPath": "index.html"
+  },
+  "plugins": {
+    "LocalNotifications": {
+      "presentationOptions": [
+        "banner",
+        "list",
+        "sound"
+      ]
+    },
+    "PushNotifications": {
+      "presentationOptions": [
+        "banner",
+        "list",
+        "sound"
+      ]
+    }
+  }
+}

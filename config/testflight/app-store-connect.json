@@ -1,0 +1,18 @@
+{
+  "bundleId": "dev.gramlot.capacitor.poc",
+  "name": "Gramlot",
+  "platforms": [
+    "IOS"
+  ],
+  "primaryLocale": "it",
+  "sku": "dev.gramlot.capacitor.poc",
+  "internalGroup": {
+    "name": "Team interno",
+    "automaticDistribution": false,
+    "state": "testing",
+    "testerCount": 6
+  },
+  "state": "internal-testing",
+  "appStoreConnectId": "6826770549",
+  "userAccess": "limited"
+}

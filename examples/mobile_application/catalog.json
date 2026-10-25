@@ -1,0 +1,164 @@
+{
+  "id": "mobileApplication",
+  "title": "Mobile application",
+  "visibility": "native",
+  "entries": [
+    {
+      "id": "appearance",
+      "title": "Appearance and controls",
+      "path": "appearance",
+      "capabilities": [],
+      "requires": []
+    },
+    {
+      "id": "clipboard",
+      "title": "Clipboard",
+      "path": "clipboard",
+      "capabilities": [
+        "clipboard"
+      ],
+      "requires": []
+    },
+    {
+      "id": "transform",
+      "title": "Gestures: move, rotate and zoom",
+      "path": "transform",
+      "capabilities": [
+        "camera"
+      ],
+      "requires": []
+    },
+    {
+      "id": "audio",
+      "title": "Audio and sharing",
+      "path": "audio",
+      "capabilities": [
+        "audio"
+      ],
+      "requires": []
+    },
+    {
+      "id": "network",
+      "title": "Network",
+      "path": "network",
+      "capabilities": [
+        "network"
+      ],
+      "requires": []
+    },
+    {
+      "id": "lifecycle",
+      "title": "App lifecycle",
+      "path": "lifecycle",
+      "capabilities": [
+        "lifecycle"
+      ],
+      "requires": []
+    },
+    {
+      "id": "haptics",
+      "title": "Haptic feedback",
+      "path": "haptics",
+      "capabilities": [
+        "haptics"
+      ],
+      "requires": []
+    },
+    {
+      "id": "shortcuts",
+      "title": "Shortcuts",
+      "path": "shortcuts",
+      "capabilities": [
+        "shortcuts"
+      ],
+      "requires": [
+        "topLevelEntry"
+      ]
+    },
+    {
+      "id": "app",
+      "title": "App information",
+      "path": "app",
+      "capabilities": [
+        "appinfo"
+      ],
+      "requires": []
+    },
+    {
+      "id": "location",
+      "title": "Geolocation",
+      "path": "location",
+      "capabilities": [
+        "location"
+      ],
+      "requires": []
+    },
+    {
+      "id": "camera",
+      "title": "Camera and photo library",
+      "path": "camera",
+      "capabilities": [
+        "camera"
+      ],
+      "requires": []
+    },
+    {
+      "id": "barcode",
+      "title": "QR codes and barcodes",
+      "path": "barcode",
+      "capabilities": [
+        "barcode"
+      ],
+      "requires": []
+    },
+    {
+      "id": "biometrics",
+      "title": "Face ID / Touch ID",
+      "path": "biometrics",
+      "capabilities": [
+        "biometrics"
+      ],
+      "requires": []
+    },
+    {
+      "id": "notifications",
+      "title": "Local notifications",
+      "path": "notifications",
+      "capabilities": [
+        "notifications"
+      ],
+      "requires": []
+    },
+    {
+      "id": "push",
+      "title": "Server push",
+      "path": "push",
+      "capabilities": [
+        "push"
+      ],
+      "requires": [
+        "pushRegistration"
+      ]
+    },
+    {
+      "id": "motion",
+      "title": "Orientation and sensors",
+      "path": "motion",
+      "capabilities": [
+        "orientation",
+        "gyroscope",
+        "accelerometer"
+      ],
+      "requires": []
+    },
+    {
+      "id": "database",
+      "title": "SQLite and persistent notes",
+      "path": "database",
+      "capabilities": [
+        "database"
+      ],
+      "requires": []
+    }
+  ]
+}
