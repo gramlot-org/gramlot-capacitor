@@ -12,7 +12,7 @@ class Page(DevicePage):
         self.example(page)
 
     def example(self, page):
-        card = page.section(class_='device-card')
+        card = page.section(class_='device-card', nodeId='nativeNotes')
         card.p('Create the database on this device, save a note, then fully close and reopen Gramlot. Open this page and load the notes again.')
         card.dataSetter('view.database.text', 'GRAMLOT-SQLITE-001')
         card.dataSetter('view.database.busy', False)

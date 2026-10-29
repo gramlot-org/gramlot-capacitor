@@ -21,15 +21,22 @@ export class Logic {
             if (this.page.state !== 'disposed') node.SET('view.database.error', 'Database operation failed. Check that the current native app is installed and try opening the database again.');
         } finally { if (this.page.state !== 'disposed') node.SET('view.database.busy', false); }
     }
+    databaseContext(node) {
+        const owner = node.builder.nodeById('nativeNotes');
+        // External resources follow their Source owner; Logic contains behavior only.
+        if (!owner.databaseContext) owner.databaseContext = {database:null, queries:null};
+        return owner.databaseContext;
+    }
     async databaseRead(node) {
-        const rows = await this.queries.table('local.note').query({columns:'$id,$text,$created',order_by:'$created'}).fetch();
+        const rows = await this.databaseContext(node).queries.table('local.note').query({columns:'$id,$text,$created',order_by:'$created'}).fetch();
         if (this.page.state !== 'disposed') node.SET('view.database.notes', rows.map(row=>`${row.created}  ${row.text}`).join('\n') || 'No saved notes');
     }
     databaseOpen(node) {
         return this.databaseRun(node, async()=>{
-            if (!this.database) this.database = await this.page.dvc.openDatabase('notes');
-            await migrateSQLite(this.database, model.toMigration());
-            this.queries = model.queries(this.database);
+            const context = this.databaseContext(node);
+            if (!context.database) context.database = await this.page.dvc.openDatabase('notes');
+            await migrateSQLite(context.database, model.toMigration());
+            context.queries = model.queries(context.database);
             if (this.page.state === 'disposed') return;
             node.SET('view.database.ready', true);
             await this.databaseRead(node);
@@ -37,7 +44,7 @@ export class Logic {
     }
     databaseSave(node) {
         return this.databaseRun(node, async()=>{
-            await this.queries.table('local.note').insert({id:crypto.randomUUID(),text:node.GET('view.database.text'),created:new Date().toISOString()});
+            await this.databaseContext(node).queries.table('local.note').insert({id:crypto.randomUUID(),text:node.GET('view.database.text'),created:new Date().toISOString()});
             await this.databaseRead(node);
         });
     }

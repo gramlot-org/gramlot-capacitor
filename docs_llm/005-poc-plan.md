@@ -180,3 +180,13 @@ First internal TestFlight delivery, 2026-10-25: owner explicitly authorizes uplo
 ## Public source repository — 2026-10-25
 
 Owner requests “su github mettilo in gramlot-org” and explicitly chooses “Pubblico, come gli altri repository Gramlot”. Publish this repository as gramlot-org/gramlot-capacitor. The reviewed current PoC snapshot is the consolidated main reference, with develop retained for further work. This authorizes source publication only; no additional package release, app deployment or TestFlight build is implied. Private .local artifacts, signing/provisioning/APNs material, device identifiers, user media and generated npm lockfiles are excluded. Core source remains owned and published separately by Gramlot; consumers need the matching core device/frame contracts described in GCP-110 and GCP-130.
+
+<a id="gcp-005-common-base-20261029"></a>
+## Common local base checkpoint — 2026-10-29
+
+GCP-110 §065 records the bounded gallery integration on an isolated copy. The
+current mobile module is staged alongside the common database/chat examples;
+SQLite external resource references move from Logic to their Source card. The
+original repository remains untouched. Automated provider, page and module
+checks pass; local browser rendering passes. Native-device acceptance remains
+separate, with no publication or TestFlight upload in this step.

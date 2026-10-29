@@ -227,3 +227,27 @@ Owner approved native SQLite without SQLCipher, Asqueel JS and the page-owned op
 The iOS build must register GramlotSQLitePlugin and link Apple's system SQLite via NativeDatabase. Older native builds and ordinary browsers report unavailable. Saved note contents remain on the phone and are not server resources. Continue the English-only requirement in §055 and the motion handoff in §050.
 
 Public read-only check on 2026-10-25: https://gallery-py.gramlot.dev/mobile-application/database returns HTTP 404. This increment is locally prepared and has not been deployed by this chat. The receiving gallery chat must deploy the matching module/runtime/provider before this example can be used in the public-only beta. TestFlight upload is not authorized.
+
+<a id="gcp-110-065"></a>
+## 065 · Common-base reconciliation — 2026-10-29
+
+Owner approved integration into the common local base while preserving original
+work, leaving Invoice out and handling Grouplets separately. The current English
+module (17 catalogue entries, 15 eligible without server prerequisites) replaces
+the older gallery worktree's LAN prototype; GE-020 and GP-025 own registration and
+hosting. Build the provider with the common core's DeviceFrameHost implementation
+and stage only the allowlisted public artifact. No native shell configuration,
+private signing/APNs data or local service is part of that artifact.
+
+The SQLite page attaches external database/query references to the `nativeNotes`
+Source card. Logic contains behavior only. Current note text, results, readiness,
+busy state and errors remain in Data. Reopening through another button on the
+same card reuses its connection; a failed open clears busy state and permits a
+retry. The existing DeviceHandler/broker closes resources with their page.
+
+Verification: 75 provider/page tests pass, including Source ownership and retry
+regressions; three Python module tests and seventeen page subtests pass. All
+fifteen eligible pages render in the common local browser preview. Tests with
+mocked native APIs are not physical-device acceptance. Off-LAN iPhone tests,
+Universal Link delivery and a matching public deployment remain separate. No
+TestFlight upload, public deployment or package release is part of this step.
