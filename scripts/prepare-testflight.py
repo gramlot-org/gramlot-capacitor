@@ -46,7 +46,7 @@ def prepare(output, modules):
     (output/'node_modules').symlink_to(ROOT/'node_modules',target_is_directory=True)
     config=json.loads((ROOT/'capacitor.config.json').read_text())
     config.update(appId=profile['appId'],appName=profile['appName'],webDir='www')
-    config['server']={'cleartext':False,'allowNavigation':['gallery-py.gramlot.dev'],'appStartPath':'index.html'}
+    config['server']={'cleartext':False,'allowNavigation':['gallery-py.gramlot.dev'],'appStartPath':'/index.html'}
     config['ios']={'webContentsDebuggingEnabled':False}
     (output/'capacitor.config.json').write_text(json.dumps(config,indent=2)+'\n')
     web=output/'www';web.mkdir()

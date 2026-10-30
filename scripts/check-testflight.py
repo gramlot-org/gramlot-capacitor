@@ -7,7 +7,7 @@ ROOT=Path(__file__).resolve().parents[1]
 
 def check(project):
     config=json.loads((project/'capacitor.config.json').read_text())
-    assert config['server']=={'cleartext':False,'allowNavigation':['gallery-py.gramlot.dev'],'appStartPath':'index.html'}
+    assert config['server']=={'cleartext':False,'allowNavigation':['gallery-py.gramlot.dev'],'appStartPath':'/index.html'}
     assert config['ios']['webContentsDebuggingEnabled'] is False
     assert config['appName'] == 'Gramlot'
     app=project/'ios/App/App'

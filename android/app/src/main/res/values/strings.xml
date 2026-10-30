@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Gramlot PoC</string>
+    <string name="title_activity_main">Gramlot PoC</string>
+    <string name="package_name">dev.gramlot.capacitor.poc</string>
+    <string name="custom_url_scheme">dev.gramlot.capacitor.poc</string>
+</resources>

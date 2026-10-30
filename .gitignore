@@ -3,6 +3,8 @@
 .env.*
 !.env.example
 node_modules/
+# Local Node.js virtual environment
+.nenv/
 *.p8
 *.p12
 *.mobileprovision

@@ -1,6 +1,6 @@
 # 025 · Device Data PoC
 
-Document ID: **GCP-025**. Updated: **2026-10-24**.
+Document ID: **GCP-025**. Updated: **2026-10-28**.
 
 [Contract](020-device-integration.md). [Gallery milestone](015-gallery-poc.md).
 
@@ -58,3 +58,18 @@ Scope: one owning page, foreground location, no cross-frame relay, background-lo
 - iOS: App and Geolocation sync, signed build and strict codesign verification pass.
 
 After the phone reconnected, its provisioning coverage was checked and devicectl installation and launch both returned success. The owner confirmed that the phone was connected and unlocked. Remaining: verify real app information, the permission prompt, a real location and enabled/watching transitions on screen. The app is installed and launched; native result acceptance and production readiness are not claimed.
+
+<a id="gcp-025-025"></a>
+## 025 · Android debug build
+
+Status: implemented; the debug APK installs and the embedded entry renders on a physical Android device. Native plugin behaviour on Android is not verified or accepted.
+
+Prerequisites: JDK 21, Android SDK platform 36 with build tools, `JAVA_HOME` and `ANDROID_HOME` set, and the Gramlot checkout path in ignored .local/core-path (its runtime built with `npm --prefix js run build` and its `.venv` installed).
+
+```sh
+npm run android:sync
+(cd android && ./gradlew assembleDebug)
+adb install -r android/app/build/outputs/apk/debug/app-debug.apk
+```
+
+`minSdkVersion` is 26 because the barcode scanner library requires it. `server.appStartPath` is `/index.html`: Capacitor Android appends it to `https://localhost` without a separator, while iOS `appendingPathComponent` adds one only when missing. Gradle outputs, copied web assets, generated Capacitor configuration, local.properties and signing keystores are ignored.
