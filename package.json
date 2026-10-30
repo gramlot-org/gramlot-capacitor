@@ -11,6 +11,8 @@
     "ios:sync": "npm run shell:build && cap sync ios",
     "ios:open": "cap open ios",
     "ios:check": "sh scripts/check-ios-toolchain.sh",
+    "android:sync": "npm run shell:build && cap sync android",
+    "android:open": "cap open android",
     "device:build": "node scripts/build-device.mjs",
     "test": "node --experimental-test-module-mocks --test tests/*.test.mjs",
     "device:start": "sh scripts/start-device.sh",
@@ -22,6 +24,7 @@
   "dependencies": {
     "@aparajita/capacitor-biometric-auth": "^10.0.0",
     "@asqueel/asqueel-js": "*",
+    "@capacitor/android": "^8.5.3",
     "@capacitor/app": "^8.1.2",
     "@capacitor/barcode-scanner": "^3.1.3",
     "@capacitor/camera": "^8.2.6",

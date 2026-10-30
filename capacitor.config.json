@@ -8,7 +8,7 @@
       "gallery-py.gramlot.dev",
       "192.168.5.115"
     ],
-    "appStartPath": "index.html"
+    "appStartPath": "/index.html"
   },
   "plugins": {
     "LocalNotifications": {
