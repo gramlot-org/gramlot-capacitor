@@ -251,3 +251,15 @@ fifteen eligible pages render in the common local browser preview. Tests with
 mocked native APIs are not physical-device acceptance. Off-LAN iPhone tests,
 Universal Link delivery and a matching public deployment remain separate. No
 TestFlight upload, public deployment or package release is part of this step.
+
+
+<a id="gcp-110-070"></a>
+## 070 · Common-runtime requalification — 2026-11-01
+
+The Source-owned SQLite correction from §065 is requalified with the current
+common runtime, rebuilt provider and the receiving gallery. See
+[GCP-005 consolidation](005-poc-plan.md#gcp-005-mobile-consolidation-20261101)
+for exact revisions, checks and boundaries. Native device acceptance and public
+activation are distinct from this source consolidation; no TestFlight build is
+created or uploaded. Continue shipping core, provider, pages and catalogue as a
+matched set. The unmodified original worktree is preserved.

@@ -190,3 +190,34 @@ SQLite external resource references move from Logic to their Source card. The
 original repository remains untouched. Automated provider, page and module
 checks pass; local browser rendering passes. Native-device acceptance remains
 separate, with no publication or TestFlight upload in this step.
+
+
+<a id="gcp-005-mobile-consolidation-20261101"></a>
+## Mobile common-base consolidation — 2026-11-01
+
+Owner confirmed “ok allora procedi” after the explanation of consolidating the
+Source-owned SQLite correction in this repository and verifying it against the
+current common runtime. This closes the isolated 2026-10-29 source increment;
+it does not authorize app deployment, a native build or a TestFlight upload.
+Invoice remains excluded and original working copies remain intact.
+
+The correction in 51c5953 is requalified with Gramlot 33dfdd12, Python server
+e7e887e and gallery b7dd1bb. Connection/query references remain on the Source
+card, values and operation status in Data. The existing page/device broker owns
+native cleanup. No new API, alternate transport or native plugin is introduced.
+
+Verification: 75 provider/page tests; 92 core device/frame/motion/environment
+tests; 3 Python module tests with 17 page subtests; 1 host module test; 3 gallery
+module JavaScript tests; 4 gallery Python tests with 8 subtests. The provider is
+rebuilt with Node 24 against the common core; the public artifact contains only
+45 allowlisted files. Chromium and WebKit render all 15 eligible mobile pages;
+the ordinary browser hides the native branch and a database-open attempt without
+the native plugin reports the failure and permits retry. Original preservation:
+836 snapshotted files unchanged. Test evidence is retained locally under
+/private/tmp/gramlot-mobile-close-20261101/.
+
+Native SQLite persistence was accepted in the earlier device trial; this increment
+does not claim a new physical-device or TestFlight test. HTTPS native iframe
+behavior remains covered by the broker tests, not by the HTTP page-render smoke.
+Server push remains unavailable without its configured backend. Source promotion
+is separate from public gallery deployment and publication of generated assets.
