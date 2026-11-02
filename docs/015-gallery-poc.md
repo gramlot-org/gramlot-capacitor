@@ -44,7 +44,7 @@ The Compose overlay in `deploy/local-https/compose.gallery.yaml` extends the reu
 
 ```sh
 # Set this only when the Kajenn checkout is elsewhere.
-export KAJENN_HTTPS_DIR=/path/to/kajenn/deploy/local-https
+export KAJENN_HTTPS_DIR=/path/to/kajenn-deploy/local-https
 ./scripts/start-gallery.sh
 ```
 

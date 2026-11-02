@@ -10,6 +10,8 @@ Owner, originating conversation, 2026-10-24 (translated from Italian): “Yes, I
 
 Implemented and verified in `kajenn/deploy/local-https`: Compose with published kajenn packages, a non-root application process, Caddy internal CA, mounted site recipe and persistent site/CA volumes. Default endpoint: `https://localhost:8443/_server` (server information JSON, not a Gramlot test application). Verified HTTPS for localhost and an IPv4 address, certificate rejection without the CA, container health, dependency consistency, and data/CA survival across container recreation. The standard environment remains running on Mac loopback port 8443. Device LAN access and trust remain unverified; no Mac/device trust store, signing setting or Hetzner deployment was changed.
 
+Moved 2026-11-02: the reusable environment now lives in `kajenn-org/kajenn-deploy` at `local-https/` (local checkout `kajenn/kajenn-deploy/local-https`). The folder name is unchanged, so the Compose project, its image and its CA/data volumes stay the same.
+
 ## Ownership and implementation boundaries
 
 - This repository owns the proposed mobile container, native plugin integration, site-specific app configurations and bounded PoC fixtures.

@@ -3,7 +3,7 @@
 set -eu
 GRAMLOT_CAPACITOR_DIR=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
 export GRAMLOT_CAPACITOR_DIR
-KAJENN_HTTPS_DIR=${KAJENN_HTTPS_DIR:-"$GRAMLOT_CAPACITOR_DIR/../../kajenn/kajenn/deploy/local-https"}
+KAJENN_HTTPS_DIR=${KAJENN_HTTPS_DIR:-"$GRAMLOT_CAPACITOR_DIR/../../kajenn/kajenn-deploy/local-https"}
 KAJENN_HTTPS_DIR=$(CDPATH= cd -- "$KAJENN_HTTPS_DIR" && pwd)
 cd "$KAJENN_HTTPS_DIR"
 docker compose build --pull --no-cache kajenn

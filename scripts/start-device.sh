@@ -3,7 +3,7 @@
 set -eu
 GRAMLOT_CAPACITOR_DIR=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
 GRAMLOT_CORE_DIR=$(cat "$GRAMLOT_CAPACITOR_DIR/.local/core-path")
-KAJENN_HTTPS_DIR=$(CDPATH= cd -- "$GRAMLOT_CAPACITOR_DIR/../../kajenn/kajenn/deploy/local-https" && pwd)
+KAJENN_HTTPS_DIR=$(CDPATH= cd -- "$GRAMLOT_CAPACITOR_DIR/../../kajenn/kajenn-deploy/local-https" && pwd)
 export GRAMLOT_CAPACITOR_DIR
 npm --prefix "$GRAMLOT_CORE_DIR/js" run build
 mkdir -p "$GRAMLOT_CAPACITOR_DIR/.local/runtime"
